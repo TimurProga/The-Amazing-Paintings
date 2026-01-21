@@ -24,9 +24,10 @@ header{
     justify-content: center;
 }
 .painting{
-    background-color: black;
+    border:1px black solid;
     height:600px;
     width:90%;
+    flex-wrap: wrap;
 }
 .info{
     display:flex;
