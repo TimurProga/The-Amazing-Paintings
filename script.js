@@ -24,6 +24,16 @@ function build_card(){
   main.append(Painting);
   main.append(info);
   main.append(button);
+  button.addEventListener('click',()=>{
+    localStorage.setItem("amount",Number(localStorage.getItem("amount"))+1);
+    
+    let arr=JSON.parse(localStorage.getItem("positions"));
+    arr.push({painting:Painting.innerHTML,name:name.innerText,price:Number(price.innerText.substring(0,price.innerText.length-2))});
+    localStorage.setItem("positions",JSON.stringify(arr));
+    
+    counter.innerText=localStorage.getItem("amount");
+    button.style.display="none";
+  });
   return main;
 }
 
@@ -35,10 +45,10 @@ function rand(min, max) {
 
 function paint(painting){
   let blocks=new Array();
-  let mozh=600;
+  let limit=600;
   for (let i=0;i<rand(3,6);i++){
-    let height=rand(10,mozh/2);
-    mozh-=height;
+    let height=rand(10,limit/2);
+    limit-=height;
     let block=document.createElement("div");
     block.style.position="relative";
     block.style.left=`${rand(0,200)}px`;
@@ -58,9 +68,18 @@ function paint(painting){
 }
 
 
+localStorage.setItem("amount",0);
+let positions=new Array();
+localStorage.setItem("positions",JSON.stringify(positions));
 let main=document.querySelector("main");
 let PaintingsNum= rand(15,21);
 PaintingsNum-=PaintingsNum%3;
+let counter=document.getElementById("num");
+let cart=document.getElementById("cart");
+
+cart.addEventListener('click',()=>{
+  window.location.href="cart.html";
+});
 
 for (let i=0;i<PaintingsNum;i++){
   let card=build_card();

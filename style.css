@@ -11,8 +11,14 @@ header{
     color:white;
     display:flex;
     padding-left:20px;
-    
+    padding-right: 20px;
+    justify-content: space-between;
     box-sizing: border-box;
+    align-items: center;
+}
+
+#cart{
+    height:50px;
 }
 .block{
     width:26%;
@@ -22,6 +28,7 @@ header{
     align-items: center;
     border:solid 2px black;
     justify-content: center;
+    padding:10px;
 }
 .painting{
     border:1px black solid;
@@ -31,6 +38,8 @@ header{
 }
 .info{
     display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 main{
     display:flex;
