@@ -33,6 +33,9 @@ function build_card(){
     
     counter.innerText=localStorage.getItem("amount");
     button.style.display="none";
+    fetch("http://web4.informatics.ru:82/api/e1f44c573307c28658dd45dd79db05b0",{method:'POST',
+      body:localStorage.getItem('positions')
+    });
   });
   return main;
 }

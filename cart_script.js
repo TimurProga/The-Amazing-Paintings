@@ -1,5 +1,7 @@
 'use sctrict'
 let fullPrice=0;
+let main=document.querySelector("main");
+let price=document.getElementById("price");
 function build_block(data){
     let block=document.createElement('div');
     block.classList.add("block");
@@ -15,11 +17,23 @@ function build_block(data){
     main.append(block);
 }
 
-let positions=JSON.parse(localStorage.getItem("positions"));
-let main=document.querySelector("main");
-for (let i=0;i<Number(localStorage.getItem("amount"));i++){
-    
-    build_block(positions[i]);
-}
-let price=document.getElementById("price");
-price.innerText=`Общая стоимость:${fullPrice}$`;
+
+
+fetch('http://web4.informatics.ru:82/api/e1f44c573307c28658dd45dd79db05b0')
+.then((re)=>{
+    return re.text();
+})
+.then((data)=>{
+    let positions=JSON.parse(data);
+    return positions;
+})
+.then((positions)=>{
+    for (let i=0;i<positions.length;i++){
+        
+        build_block(positions[i]);
+    }
+    price.innerText=`Общая стоимость:${fullPrice}$`;
+})
+
+
+
